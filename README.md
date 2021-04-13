@@ -1,2 +1,2 @@
 # GEARS
-Generalist Electromechanics for Applied Researchers Workshops
+This is the readme
