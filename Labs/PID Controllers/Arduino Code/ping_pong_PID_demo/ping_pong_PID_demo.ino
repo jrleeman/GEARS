@@ -24,8 +24,12 @@ Adafruit_VL53L0X dist_sensor = Adafruit_VL53L0X();
 
 float readDistance()
 {
+  VL53L0X_RangingMeasurementData_t measurement;
+  dist_sensor.rangingTest(&measurement, false);
+  return measurement.RangeMilliMeter;
+  /*
   float distance = 0;
-  uint8_t navg = 1;
+  uint8_t navg = 3;
   VL53L0X_RangingMeasurementData_t measurement;
   for (uint8_t i=0; i<navg; i++)
   {
@@ -36,6 +40,7 @@ float readDistance()
     }
   }
   return distance / navg;
+  */
 }
 
 void setup()
@@ -62,7 +67,7 @@ void setup()
   // Turn the PID on - this is not automatic tuning!
   controller.SetMode(AUTOMATIC);
 
-  controller.SetSampleTime(100);
+  controller.SetSampleTime(10);
 }
 
 void loop()
